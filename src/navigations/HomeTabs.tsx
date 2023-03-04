@@ -20,7 +20,7 @@ export default function HomeTabs({ navigation }: any) {
     return (
         <>
             <CreateModal navigation={navigation} />
-            <Tab.Navigator initialRouteName="Home">
+            <Tab.Navigator  initialRouteName="Home">
                 <Tab.Screen
                     options={{
                         tabBarIcon: ({ color, size, focused }) => <FontAwesomeIcon size={size} color={color} icon={faHouse} />,

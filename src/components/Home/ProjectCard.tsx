@@ -1,11 +1,19 @@
 import { View, Text, Pressable } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar } from "react-native-paper";
 import { theme } from "../../assets/styles/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, StoreType } from "../../store/store";
+import { lastProjectAction } from "../../store/redux/projectSlice";
 
 const ProjectCard = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    useEffect(() => {
+        dispatch(lastProjectAction());
+    }, [])
+    const projectState = useSelector((state: StoreType) => state.project.lastProject);
     return (
         <View style={{
             marginVertical: theme.spacing.xl,
@@ -13,7 +21,7 @@ const ProjectCard = () => {
             justifyContent: "space-between",
             padding: theme.spacing.xl,
             backgroundColor: theme.colors.blue[900],
-            borderRadius: 20
+            borderRadius: 20,
         }}>
             <View style={{
                 justifyContent: 'space-between',
@@ -23,13 +31,13 @@ const ProjectCard = () => {
                         fontSize: theme.fontSize.l,
                         color: theme.colors.white[500]
                     }}>
-                        App Design
+                        {projectState?.title}
                     </Text>
                     <Text style={{
                         fontSize: theme.fontSize.s,
                         color: theme.colors.white[900]
                     }}>
-                        Task manager ui kit
+                        {projectState?.description}
                     </Text>
                 </View>
                 <View>
@@ -69,26 +77,13 @@ const ProjectCard = () => {
                 padding: theme.spacing.xs,
                 borderRadius: 15
             }}>
-                <Avatar.Text style={{
-                    backgroundColor: theme.colors.blue[500],
-                    marginBottom: -5
-                }} size={24} label="MA" />
-                <Avatar.Text style={{
-                    backgroundColor: theme.colors.gray,
-                    marginBottom: -5
-                }} size={24} label="MA" />
-                <Avatar.Text style={{
-                    backgroundColor: theme.colors.black[900],
-                    marginBottom: -5
-                }} size={24} label="MA" />
-                <Avatar.Text style={{
-                    backgroundColor: theme.colors.blue[500],
-                    marginBottom: -5
-                }} size={24} label="MA" />
-                <Avatar.Text style={{
-                    backgroundColor: theme.colors.blue[500],
-                    marginBottom: -5
-                }} size={24} label="MA" />
+                {projectState?.teamMembers.map((user) => {
+                    return (<Avatar.Text key={user._id} style={{
+                        backgroundColor: theme.colors.blue[500],
+                        marginBottom: -5
+                    }} size={24} label={'AA'} />)
+                })}
+
             </View>
         </View>
     );

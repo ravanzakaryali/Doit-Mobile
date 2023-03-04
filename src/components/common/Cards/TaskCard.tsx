@@ -4,17 +4,21 @@ import Card from './';
 import { Avatar } from "react-native-paper";
 import { theme } from "../../../assets/styles/theme";
 
-const TaskCard = () => {
+interface TaskCard{
+    title: string,
+    description: string
+}
+const TaskCard = (data: TaskCard) => {
     return (
         <Card>
             <View>
                 <Text style={{
                     fontSize: theme.fontSize.m,
                     fontWeight: '500'
-                }}>3d Making Project</Text>
+                }}>{data.title}</Text>
                 <Text style={{
                     fontWeight: '400'
-                }}>Team project working on Figma</Text>
+                }}>{data.description}</Text>
             </View>
             <View style={{
                 flexDirection: 'row',

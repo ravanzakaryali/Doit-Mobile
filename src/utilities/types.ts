@@ -36,3 +36,9 @@ export interface UserListType {
     profileImageUrl: string,
     id: string
 }
+
+export interface UserType{
+    name: string,
+    id: string,
+    token: string
+}

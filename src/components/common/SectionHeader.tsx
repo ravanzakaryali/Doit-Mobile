@@ -22,7 +22,7 @@ const SectionHeader = ({ options, data }: SectionHeaderType) => {
         <View style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
         }}>
             <Text style={options.titleStyle}>{data.title}</Text>
             {
